@@ -14,14 +14,16 @@ module.exports = yeoman.Base.extend({
     ));
 
     var prompts = [{
-      type: 'confirm',
-      name: 'someAnswer',
-      message: 'Would you like to enable this option?',
+      type: 'input',
+      name: 'name',
+      message: 'Your project name',
       default: true
     }];
 
-    this.prompt(prompts, function (props) {
-      this.props = props;
+    this.prompt(prompts, function (answers) {
+      this.props = answers;
+
+      this.log(answers.name);
       // To access props later use this.props.someAnswer;
 
       done();
@@ -29,10 +31,21 @@ module.exports = yeoman.Base.extend({
   },
 
   writing: function () {
-    this.fs.copy(
-      this.templatePath('dummyfile.txt'),
-      this.destinationPath('dummyfile.txt')
+    // configs
+    this.fs.copyTpl(
+      this.templatePath('_package.json'),
+      this.destinationPath('package.json'), {
+        name: this.props.name
+      }
     );
+
+    this.fs.copy(
+      this.templatePath('_webpack.config.js'),
+      this.destinationPath('webpack.config.js')
+    );
+
+    // app files
+
   },
 
   install: function () {
