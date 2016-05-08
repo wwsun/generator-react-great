@@ -12,7 +12,13 @@ describe('generator-react-great:app', function () {
 
   it('creates files', function () {
     assert.file([
-      'dummyfile.txt'
+      'package.json',
+      'webpack.config.js',
+      'index.jsx',
+      'src/index.jsx',
+      'src/components/Comp.jsx',
+      'demo/index.html',
+      'demo/index.jsx'
     ]);
   });
 });

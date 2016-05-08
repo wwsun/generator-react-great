@@ -3,7 +3,7 @@ var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
 
-module.exports = yeoman.generators.Base.extend({
+module.exports = yeoman.Base.extend({
 
   prompting: function () {
     var done = this.async();
@@ -13,12 +13,12 @@ module.exports = yeoman.generators.Base.extend({
       'Welcome to the kryptonian ' + chalk.red('generator-react-great') + ' generator!'
     ));
 
-    var prompts = [ {
+    var prompts = [{
       type: 'input',
       name: 'name',
       message: 'Your project name',
       default: this.appname
-    } ];
+    }];
 
     this.prompt(prompts, function (answers) {
       this.props = answers;
