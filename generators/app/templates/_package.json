@@ -32,6 +32,6 @@
     "start": "npm run dev",
     "dev": "dora -p 3000 --plugins webpack,hmr,livereload",
     "lint": "eslint --ext .jsx,.js src",
-    "precommit": "eslint `git diff HEAD --name-only --diff-filter=ACMRTU | awk '/\\.(js|jsx)$/' | awk -v path=$(git rev-parse --show-toplevel)/ '{print path$1}' ORS=' '`",
+    "precommit": "eslint `git diff HEAD --name-only --diff-filter=ACMRTU | awk '/\\.(js|jsx)$/' | awk -v path=$(git rev-parse --show-toplevel)/ '{print path$1}' ORS=' '`"
   }
 }

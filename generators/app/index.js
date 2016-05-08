@@ -3,7 +3,7 @@ var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
 
-module.exports = yeoman.Base.extend({
+module.exports = yeoman.generators.Base.extend({
 
   prompting: function () {
     var done = this.async();
@@ -13,12 +13,12 @@ module.exports = yeoman.Base.extend({
       'Welcome to the kryptonian ' + chalk.red('generator-react-great') + ' generator!'
     ));
 
-    var prompts = [{
+    var prompts = [ {
       type: 'input',
       name: 'name',
       message: 'Your project name',
-      default: true
-    }];
+      default: this.appname
+    } ];
 
     this.prompt(prompts, function (answers) {
       this.props = answers;
@@ -30,69 +30,61 @@ module.exports = yeoman.Base.extend({
     }.bind(this));
   },
 
-  writing: function () {
-    // package.json
-    this.fs.copyTpl(
-      this.templatePath('_package.json'),
-      this.destinationPath('package.json'), {
-        name: this.props.name
-      }
-    );
+  writing: {
+    // Copy the configuration files
+    config: function () {
+      this.fs.copyTpl(
+        this.templatePath('_package.json'),
+        this.destinationPath('package.json'), {
+          name: this.props.name
+        }
+      );
 
-    // webpack
-    this.fs.copy(
-      this.templatePath('_webpack.config.js'),
-      this.destinationPath('webpack.config.js')
-    );
+      this.fs.copy(
+        this.templatePath('_webpack.config.js'),
+        this.destinationPath('webpack.config.js')
+      );
 
-    // git
-    this.fs.copy(
-      this.templatePath('.gitignore'),
-      this.destinationPath('.gitignore')
-    );
+      this.fs.copy(
+        this.templatePath('gitignore'),
+        this.destinationPath('.gitignore')
+      );
 
-    // eslint
-    this.fs.copy(
-      this.templatePath('.eslintrc'),
-      this.destinationPath('.eslintrc')
-    );
+      this.fs.copy(
+        this.templatePath('eslintrc'),
+        this.destinationPath('.eslintrc')
+      );
+    },
 
-    // license
-    this.fs.copy(
-      this.templatePath('LICENSE'),
-      this.destinationPath('LICENSE')
-    );
+    // Copy application files
+    app: function () {
+      this.fs.copy(
+        this.templatePath('_index.jsx'),
+        this.destinationPath('index.jsx')
+      );
 
-    // readme
+      this.fs.copy(
+        this.templatePath('_src/_index.jsx'),
+        this.destinationPath('src/index.jsx')
+      );
 
+      this.fs.copy(
+        this.templatePath('_src/_components/_Comp.jsx'),
+        this.destinationPath('src/components/Comp.jsx')
+      );
 
-    // App
-    this.fs.copy(
-      this.templatePath('_index.jsx'),
-      this.destinationPath('index.jsx')
-    );
+      this.fs.copyTpl(
+        this.templatePath('_demo/_index.html'),
+        this.destinationPath('demo/index.html'), {
+          name: this.props.name
+        }
+      );
 
-    this.fs.copy(
-      this.templatePath('_src/_index.js'),
-      this.destinationPath('src/index.js')
-    );
-
-    this.fs.copy(
-      this.templatePath('_src/_components/_Comp.jsx'),
-      this.destinationPath('src/components/Comp.jsx')
-    );
-
-    // Demo
-    this.fs.copyTpl(
-      this.templatePath('_demo/_index.html'),
-      this.destinationPath('demo/index.html')
-    );
-
-    this.fs.copy(
-      this.templatePath('_demo/_index.jsx'),
-      this.destinationPath('demo/index.jsx')
-    )
-
+      this.fs.copy(
+        this.templatePath('_demo/_index.jsx'),
+        this.destinationPath('demo/index.jsx')
+      );
+    }
   },
 
   install: function () {
