@@ -10,18 +10,29 @@ npm install -g yo
 npm install -g generator-react-great
 ```
 
-Then generate your new project:
+Then create your project folder and generate your new project:
 
 ```bash
+mkdir YOUR_FOLDER && cd YOUR_FOLDER
 yo react-great
 ```
 
-## Getting To Know Yeoman
+## Getting To Know `generator-react-great`
 
- * Yeoman has a heart of gold.
- * Yeoman is a person with feelings and opinions, but is very easy to work with.
- * Yeoman can be too opinionated at times but is easily convinced not to be.
- * Feel free to [learn more about Yeoman](http://yeoman.io/).
+ * Please make sure your Node.js is at least `Node 4.x`
+ * Using the latest `React 15.x`
+ * Using the [Dora](https://github.com/dora-js/dora) service to start the development environment
+
+## The Generated Project Structure
+
+```bash
+- demo              // app demo
+- src
+    - components    // your app components
+    - index.jsx     // your app root
+- webpack.config.js // config your webpack
+- index.jsx         // your app export entry
+```
 
 ## License
 
