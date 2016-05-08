@@ -1,6 +1,6 @@
 {
   "name": "generator-react-great",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Yeoman generator for react, easy for you to build react components",
   "homepage": "https://github.com/wwsun/generator-react-great",
   "author": {
