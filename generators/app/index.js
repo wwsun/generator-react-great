@@ -31,7 +31,7 @@ module.exports = yeoman.Base.extend({
   },
 
   writing: function () {
-    // configs
+    // package.json
     this.fs.copyTpl(
       this.templatePath('_package.json'),
       this.destinationPath('package.json'), {
@@ -39,12 +39,59 @@ module.exports = yeoman.Base.extend({
       }
     );
 
+    // webpack
     this.fs.copy(
       this.templatePath('_webpack.config.js'),
       this.destinationPath('webpack.config.js')
     );
 
-    // app files
+    // git
+    this.fs.copy(
+      this.templatePath('.gitignore'),
+      this.destinationPath('.gitignore')
+    );
+
+    // eslint
+    this.fs.copy(
+      this.templatePath('.eslintrc'),
+      this.destinationPath('.eslintrc')
+    );
+
+    // license
+    this.fs.copy(
+      this.templatePath('LICENSE'),
+      this.destinationPath('LICENSE')
+    );
+
+    // readme
+
+
+    // App
+    this.fs.copy(
+      this.templatePath('_index.jsx'),
+      this.destinationPath('index.jsx')
+    );
+
+    this.fs.copy(
+      this.templatePath('_src/_index.js'),
+      this.destinationPath('src/index.js')
+    );
+
+    this.fs.copy(
+      this.templatePath('_src/_components/_Comp.jsx'),
+      this.destinationPath('src/components/Comp.jsx')
+    );
+
+    // Demo
+    this.fs.copyTpl(
+      this.templatePath('_demo/_index.html'),
+      this.destinationPath('demo/index.html')
+    );
+
+    this.fs.copy(
+      this.templatePath('_demo/_index.jsx'),
+      this.destinationPath('demo/index.jsx')
+    )
 
   },
 
